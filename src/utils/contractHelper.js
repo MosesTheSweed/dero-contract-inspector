@@ -1,3 +1,4 @@
+import {DeroDecimalPlaces} from '/src/enums/DeroContractConstants.js';
 
 
 export class ContractUtils {
@@ -12,10 +13,10 @@ export class ContractUtils {
     let code = tempcode.reduce((compactedSegments, segment) => {
       let modifiedSegment = segment.split(/[\r\n]+/).join('\n');
       if (modifiedSegment.length) {
-        compactedSegments.push(modifiedSegment);
+        compactedSegments.push(modifiedSegment.trim());
       }
       return compactedSegments;
-    }, []).join('End Function\n\n');
+    }, []).join('\nEnd Function\n\n').concat('\nEnd Function\n');
 
     // Create an array of the contract's functions
     let functionArray = code.match(functionSearch).map(item => new Object({"code": item}))
@@ -34,13 +35,23 @@ export class ContractUtils {
     return functionArray;
   }
 
-  // TODO Need to see more data to make sure this is correct as there is a 'balances' data structure too (for atomic units?)
-  static getBalances = (balance) => {
-    return parseFloat(balance);
+  static getBalances = (balances) => {
+    let formattedBalances = [];
+    const values = Object.values(balances);
+    Object.keys(balances).forEach((balance, index) => {
+      formattedBalances.push(new Object({'wallet': balance, 'value': values[index]}))
+    });
+
+    return formattedBalances
   }
 
   static getVariables = (stringKeys) => {
     return Object.keys(stringKeys)
       .map(key => new Object({'name': key, 'value': stringKeys[key]}))
+  }
+
+  static atomicUnitsToDero = (atomicUnits) => {
+    const factor = Math.pow(10, DeroDecimalPlaces.DERO_DECIMAL_PLACES);
+    return atomicUnits / factor
   }
 }
