@@ -25,7 +25,7 @@ export const useContract = () => {
       hasDataSet(true);
       functionsSet(ContractUtils.getFunctionData(res.data.result.code))
       contractVarsSet(ContractUtils.getVariables(res.data.result.stringkeys))
-      balanceListSet(ContractUtils.getBalances(res.data.result.balance))
+      balanceListSet(ContractUtils.getBalances(res.data.result.balances))
     }
   }, [deroBridgeApi])
 

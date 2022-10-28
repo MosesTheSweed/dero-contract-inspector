@@ -5,26 +5,21 @@ import Accordion from '/src/components/common/Accordion.jsx';
 import Card from '/src/components/common/Card.jsx';
 import ContractFunction from '/src/components/ContractFunction.jsx';
 import ContractVariables from '/src/components/ContractVariables.jsx';
+import {ContractUtils} from '/src/utils/contractHelper.js';
+import {ZeroAddress} from '/src/enums/DeroContractConstants.js';
+import ContractBalances from '/src/components/ContractBalances.jsx';
 
 export const Contract = () => {
   const {
     scid,
     hasData,
-    displayBalance,
+    balanceList,
     contractVars,
     functions,
   } = useContext(ContractContext);
 
-  console.log('HAS DATA IN CONTRACT', hasData);
-  console.log('Funcs', functions);
-  console.log('Vars', contractVars);
-  console.log('Balance', displayBalance);
-
-  // TODO - Break up Accordion to have functionality & container with a Card for its body??
-  // TODO - Generalize Card as well - need diff layouts for contract vs variables
-  // TODO - Make Alert dynamic with a msg & position & color
-  // TODO - display args & make then usable/submitable -- need to create 'trasnfer' api -- see apollos site for his code to upd contract vars
-  // TODO - Set up theme using tailwind at some point at least for color palette
+  //console.log('Funcs', functions);
+  // console.log('Bals', balanceList);
 
   return (
     <>
@@ -33,23 +28,30 @@ export const Contract = () => {
           <div className='ml-3 text-md'>
             {scid.length ? <><span className='text-purple-500'>Dero Smart Contract Components For SCID:</span> {scid}</> : ''}
           </div>
-          {contractVars && <Card title={`Contract Balance: ${displayBalance}`}>
+          {contractVars && <Card title={`Contract Balance: ${ContractUtils.atomicUnitsToDero(balanceList.filter(obj => obj.wallet === ZeroAddress.ZERO_ADDRESS)[0].value)} DERO`}>
+            {balanceList.length > 1 ?
+            <Accordion name='Contract Balances'>
+              <ContractBalances balances={balanceList} />
+            </Accordion>
+              : <></>}
             <Accordion name='Contract Variables'>
               <ContractVariables contractVars={contractVars} />
             </Accordion>
           </Card>
            }
-          <section className='pt-10 pb-10'>
-            <div className='container'>
-              <div className="flex flex-wrap -mx-4">
-                {functions.map((item) =>
-                  <Accordion key={item.name} name={item.name} comment={item.args ? `Function Args: ${item.args.length}` : ''}>
-                    <ContractFunction code={item.code} args={item.args} />
-                  </Accordion>
-                )}
+          {functions && <Card title='Functions'>
+            <section className='pt-1 pb-5'>
+              <div className='container'>
+                <div className="flex flex-wrap -mx-4 px-4">
+                  {functions.map((item) =>
+                    <Accordion key={item.name} name={item.name} comment={item.args ? `Function Args: ${item.args.length}` : ''}>
+                      <ContractFunction code={item.code} args={item.args} />
+                    </Accordion>
+                  )}
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </Card> }
         </>
         :
         <Alert />}
