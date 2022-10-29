@@ -54,7 +54,9 @@ export const Contract = () => {
           </Card> }
         </>
         :
-        <Alert />}
+        <div className='flex flex-column justify-center pt-40 w-full'>
+          <Alert message={scid.length ? 'Query returned no data' : 'Welcome & Enjoy'} />
+        </div>}
     </>
   );
 }

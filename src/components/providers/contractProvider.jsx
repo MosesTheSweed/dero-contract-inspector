@@ -7,7 +7,7 @@ export const ContractProvider = ({children}) => {
   const [contractVars, contractVarsSet] = useState(null)
   const [displayVars, displayVarsSet] = useState(false)
   const [balanceList, balanceListSet] = useState(null)
-  const [hasData, hasDataSet] = useState(true);
+  const [hasData, hasDataSet] = useState(false);
   const [scid, scidSet] = useState(true);
 
   const context = {
