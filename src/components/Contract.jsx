@@ -18,9 +18,6 @@ export const Contract = () => {
     functions,
   } = useContext(ContractContext);
 
-  //console.log('Funcs', functions);
-  // console.log('Bals', balanceList);
-
   return (
     <>
       {hasData ?
@@ -44,7 +41,7 @@ export const Contract = () => {
                 <div className="flex flex-wrap -mx-4 px-4">
                   {functions.map((item) =>
                     <Accordion key={item.name} name={item.name} comment={item.args ? `Function Args: ${item.args.length}` : ''}>
-                      <ContractFunction code={item.code} args={item.args} />
+                      <ContractFunction name={item.name} code={item.code} args={item.args} />
                     </Accordion>
                   )}
                 </div>

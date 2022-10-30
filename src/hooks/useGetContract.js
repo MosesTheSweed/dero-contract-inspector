@@ -4,7 +4,7 @@ import {BridgeContext} from '/src/components/providers/bridgeProvider.jsx';
 import {ContractContext} from '/src/components/providers/contractProvider.jsx';
 import {ContractUtils} from '/src/utils/contractHelper.js';
 
-export const useContract = () => {
+export const useGetContract = () => {
   const {deroBridgeApi} = useContext(BridgeContext);
   const {scidSet, hasDataSet, balanceListSet, contractVarsSet, functionsSet} = useContext(ContractContext);
 
@@ -14,8 +14,7 @@ export const useContract = () => {
       code: true,
       variables: true
     }))
-
-    console.log('RAW DATA', res.data.result);
+    // console.log('RAW DATA', res.data.result);
 
     // If err, status not 'OK', or no contract data, we send a msg to the user
     if (err || (res && res.data.result.status !== 'OK') || (res && !res.data.result.code)) {

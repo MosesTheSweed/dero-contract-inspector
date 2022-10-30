@@ -1,8 +1,8 @@
 import SearchIcon from '/src/assets/search.svg';
-import {useContract} from '/src/hooks/useContract.jsx';
+import {useGetContract} from '/src/hooks/useGetContract.js';
 
 export const SearchBar = () => {
-  const {getContract} = useContract();
+  const {getContract} = useGetContract();
 
   const handleSubmit = (event) => {
     event.preventDefault();

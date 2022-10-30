@@ -10,13 +10,17 @@ export const ContractProvider = ({children}) => {
   const [hasData, hasDataSet] = useState(false);
   const [scid, scidSet] = useState(true);
 
+  // State for when executing a contract function
+  const [dataString, dataStringSet] = useState('');
+
   const context = {
     functions, functionsSet,
     contractVars, contractVarsSet,
     displayVars, displayVarsSet,
     balanceList, balanceListSet,
     hasData, hasDataSet,
-    scid, scidSet
+    scid, scidSet,
+    dataString, dataStringSet
   }
 
   return (
