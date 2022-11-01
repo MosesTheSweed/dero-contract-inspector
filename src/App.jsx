@@ -1,4 +1,4 @@
-import {Contract} from '/src/components/Contract.jsx';
+import {Contract} from '/src/components/contract/Contract.jsx';
 import {Header} from '/src/components/header/Header.jsx';
 
 export const App = () => {
