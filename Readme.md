@@ -1,11 +1,20 @@
-# Dero API Playground
+# Dero API - first site figuring out how to use it
+
+## To get this running after cloning
+```yarn```
+
+```yarn dev```
+
+It brings up the app on port 5173:  `localhost:5173`
+
+
 Following Apollos Dero courses
 
 This site is to learn how to interact with the API bridge 
 
 Smart Contracts are written & compiled on my Goland IDE running Go
 
-## To get this site set up
+## My build out process - first time using Vite & Tailwind & a couple other thing
 
 ```
 yarn create vite  (from parent dir)
