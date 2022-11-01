@@ -6,7 +6,7 @@ import Card from '/src/components/common/Card.jsx';
 import ContractFunction from '/src/components/contract/ContractFunction.jsx';
 import ContractVariables from '/src/components/contract/ContractVariables.jsx';
 import {ContractUtils} from '/src/utils/contractHelper.js';
-import {ZeroAddress} from '/src/enums/DeroContractConstants.js';
+import {CurrencySymbol, ZeroAddress} from '/src/enums/DeroContractConstants.js';
 import ContractBalances from '/src/components/contract/ContractBalances.jsx';
 
 export const Contract = () => {
@@ -25,7 +25,7 @@ export const Contract = () => {
           <div className='ml-8 text-md'>
             {scid.length ? <><span className='text-purple-500'>Dero Smart Contract Components For SCID:</span> {scid}</> : ''}
           </div>
-          {contractVars && <Card title={`Contract Balance: ${ContractUtils.atomicUnitsToDero(balanceList.filter(obj => obj.wallet === ZeroAddress.ZERO_ADDRESS)[0].value)} Ð`}>
+          {contractVars && <Card title={`Contract Balance: ${ContractUtils.atomicUnitsToDero(balanceList.filter(obj => obj.wallet === ZeroAddress.ZERO_ADDRESS)[0].value)} ${CurrencySymbol.DERO}`}>
             {balanceList.length > 1 ?
             <Accordion name='Contract Balances'>
               <ContractBalances balances={balanceList} />
