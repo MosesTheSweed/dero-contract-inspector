@@ -5,3 +5,7 @@ export const ZeroAddress = {
 export const DeroDecimalPlaces = {
   DERO_DECIMAL_PLACES: 5
 }
+
+export const CurrencySymbol = {
+  DERO: 'Ð'
+}
