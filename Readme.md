@@ -71,8 +71,9 @@ ToDo - Article to create a theme for react using tailwind [Read Here](https://bl
 From the background.js github file (see link in Resources below), we use `start-transfer` wallet call to interact with Smart Contracts on chain via RPC Bridge
 
 ## Resources
- - Tailwind https://nerdcave.com/tailwind-cheat-sheet
- - Styled Components with vite: https://dev.to/glocore/configure-emotion-with-your-vite-react-project-7jl
- - Apollo Odyssey Video for rpc bridge: https://odysee.com/@apollo5ever:1/dd101-w3-api:e
+ - [Dero Wiki](https://dero-wiki.mysrv.cloud/index.php/Main_Page)
+ - [Tailwind Cheat Sheet](https://nerdcave.com/tailwind-cheat-sheet)
+ - [Styled Components with vite](https://dev.to/glocore/configure-emotion-with-your-vite-react-project-7jl)
+ - [Apollo Odyssey Video for rpc bridge](https://odysee.com/@apollo5ever:1/dd101-w3-api:e)
  - Github source for Bridge - This is drilled down into test file where I can copy/paste & the code used to connect to the bridge: https://github.com/g45t345rt/dero-rpc-bridge/blob/master/api/webpage-test/index.js
  - Github source for api calls to interact with Bridge - https://github.com/g45t345rt/dero-rpc-bridge/blob/master/extension/src/background.js
