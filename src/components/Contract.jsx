@@ -25,7 +25,7 @@ export const Contract = () => {
           <div className='ml-8 text-md'>
             {scid.length ? <><span className='text-purple-500'>Dero Smart Contract Components For SCID:</span> {scid}</> : ''}
           </div>
-          {contractVars && <Card title={`Contract Balance: ${ContractUtils.atomicUnitsToDero(balanceList.filter(obj => obj.wallet === ZeroAddress.ZERO_ADDRESS)[0].value)} DERO`}>
+          {contractVars && <Card title={`Contract Balance: ${ContractUtils.atomicUnitsToDero(balanceList.filter(obj => obj.wallet === ZeroAddress.ZERO_ADDRESS)[0].value)} Ð`}>
             {balanceList.length > 1 ?
             <Accordion name='Contract Balances'>
               <ContractBalances balances={balanceList} />
