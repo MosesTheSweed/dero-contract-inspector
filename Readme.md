@@ -7,6 +7,11 @@
 
 It brings up the app on port 5173:  `localhost:5173`
 
+### Depends on the Dero Bridge Api
+You need the browser extension installed
+
+You can join `The Dero Community` discord & reach out to Apollo to get info on how to get started doing dero dev... There is a simulator you can run locally and configure the bridge to communicate to.  Very easy to get going
+
 
 Following Apollos Dero courses
 
