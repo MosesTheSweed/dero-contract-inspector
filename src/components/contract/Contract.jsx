@@ -3,11 +3,11 @@ import {ContractContext} from '/src/components/providers/contractProvider.jsx';
 import {Alert} from '/src/components/common/Alert.jsx';
 import Accordion from '/src/components/common/Accordion.jsx';
 import Card from '/src/components/common/Card.jsx';
-import ContractFunction from '/src/components/ContractFunction.jsx';
-import ContractVariables from '/src/components/ContractVariables.jsx';
+import ContractFunction from '/src/components/contract/ContractFunction.jsx';
+import ContractVariables from '/src/components/contract/ContractVariables.jsx';
 import {ContractUtils} from '/src/utils/contractHelper.js';
 import {ZeroAddress} from '/src/enums/DeroContractConstants.js';
-import ContractBalances from '/src/components/ContractBalances.jsx';
+import ContractBalances from '/src/components/contract/ContractBalances.jsx';
 
 export const Contract = () => {
   const {

@@ -48,7 +48,7 @@ export class ContractUtils {
           break;
         default:
           if (element.key !== 'tokenScid' && element.key !== 'destination') {
-            console.warn('ALERT - Contract execution data not accounted for', element)
+            console.warn('ALERT - contract execution data not accounted for', element)
           }
           break;
       }
