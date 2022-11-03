@@ -15,7 +15,7 @@ export const Contract = () => {
     hasData,
     balanceList,
     contractVars,
-    functions,
+    functions
   } = useContext(ContractContext);
 
   return (
