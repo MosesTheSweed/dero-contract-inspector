@@ -34,7 +34,7 @@ export class ContractUtils {
         case 'deroAmount':
           if (element.value) {
             const wallet = data.find(item => item.key === 'destination')
-            transferData.push({scid: ZeroAddress.ZERO_ADDRESS, destination: wallet.value, amount: parseInt(element.value)})
+            transferData.push({destination: wallet.value, amount: parseInt(element.value)})
           }
           break;
         case 'tokenAmount':
@@ -44,7 +44,7 @@ export class ContractUtils {
           }
           break;
         case 'fee':
-          feeData = element.value
+          feeData = parseInt(element.value)
           break;
         default:
           if (element.key !== 'tokenScid' && element.key !== 'destination') {
