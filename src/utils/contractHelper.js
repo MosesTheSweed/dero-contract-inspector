@@ -103,7 +103,7 @@ export class ContractUtils {
   }
 
   static getVariables = (stringKeys) => {
-    return Object.keys(stringKeys)
+    return Object.keys(stringKeys).sort((a,b) => a.toLowerCase().localeCompare(b.toLowerCase()))
       .map(key => new Object({'name': key, 'value': stringKeys[key]}))
   }
 
