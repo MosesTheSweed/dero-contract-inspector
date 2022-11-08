@@ -122,12 +122,12 @@ export class ContractUtils {
       {
         name: 'deroAmount',
         type: 'Uint64',
-        toolTip: 'Amount of Dero to transfer'
+        toolTip: 'Amount of Dero to transfer (Atomic Units)'
       },
       {
         name: 'tokenAmount',
         type: 'Uint64',
-        toolTip: 'Token amount (not Dero) to transfer'
+        toolTip: 'Token amount (not Dero) to transfer (Atomic Units)'
       },
       {
         name: 'tokenScid',
@@ -137,7 +137,7 @@ export class ContractUtils {
       {
         name: 'fee',
         type: 'Uint64',
-        toolTip: 'Fee to cover writing to network'
+        toolTip: 'Fee to cover writing to network (Atomic Units)'
       }
     ]
   }
