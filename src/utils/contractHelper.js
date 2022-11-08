@@ -34,13 +34,13 @@ export class ContractUtils {
         case 'deroAmount':
           if (element.value) {
             const wallet = data.find(item => item.key === 'destination')
-            transferData.push({destination: wallet.value, amount: parseInt(element.value)})
+            transferData.push({destination: wallet.value, burn: parseInt(element.value)})
           }
           break;
         case 'tokenAmount':
           if (element.value) {
             const assetScid = data.find(item => item.key === 'tokenScid')
-            transferData.push({scid: assetScid.value, amount: parseInt(element.value)})
+            transferData.push({scid: assetScid.value, burn: parseInt(element.value)})
           }
           break;
         case 'fee':
