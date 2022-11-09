@@ -1,4 +1,4 @@
-import SimpleTable from '/src/components/common/simpleTable.jsx';
+import SimpleTable from '/src/components/common/SimpleTable.jsx';
 
 const ContractVariables = ({contractVars}) => {
 
