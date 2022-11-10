@@ -19,7 +19,7 @@ export const SearchBar = () => {
                  placeholder="Enter SCID..." required />
         </div>
         <button type="submit"
-                className="inline-flex items-center py-2.5 pl-2 pr-6 ml-2 text-xs font-medium text-stone-800 bg-cyan-400 rounded-lg border border-blue-700 hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-cyan-400 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800">
+                className="inline-flex items-center py-2.5 pl-2 pr-6 ml-2 text-xs font-medium text-purple-800 bg-cyan-400 rounded-lg border border-blue-700 hover:bg-cyan-700 hover:text-neutral-200 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-cyan-400 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800">
           <img src={SearchIcon} className="pr-1 w-5 h-5 text-gray-500 dark:text-gray-400" /> Search
         </button>
       </form>
