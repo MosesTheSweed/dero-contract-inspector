@@ -41,7 +41,9 @@ const SimpleTable = ({headers, data}) => {
                   >
                     {item.name}
                   </td>
-                  <td className="w-1/3 text-left py-3 px-4">{item.value}</td>
+                  <td className="w-1/3 text-left py-3 px-4 whitespace-pre-wrap">
+                    {item.value}
+                  </td>
                 </tr>
               )}
               </tbody>

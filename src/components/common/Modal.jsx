@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-modal';
-
 const customStyles = {
   content: {
     top: '50%',
@@ -10,7 +9,9 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: '#1F2937'
+    backgroundColor: '#1F2937',
+    overflow: 'auto',
+    maxHeight: 'calc(100vh - 125px)'
   }
 };
 
@@ -38,7 +39,7 @@ function MyModal(props) {
           <button onClick={e => onModalClose(e)}>Close</button>
         </div>
         <div>
-          <ul className='text-neutral-200'>
+          <ul className='text-neutral-200 whitespace-pre-wrap'>
             {props.dynData && props.dynData.value}
           </ul>
         </div>
