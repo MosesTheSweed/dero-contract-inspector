@@ -1,4 +1,5 @@
 import React from 'react';
+import {ContractUtils} from '../utils/contractHelper.js';
 
 export const useDownload = () => {
   const exportToJson = (data) => {
@@ -10,10 +11,11 @@ export const useDownload = () => {
   }
 
   const exportToCsv = (data) => {
-    const headers = ['Name, Value']
+    const headers = ['Name|Json|Hex']
     const scVars = data.reduce((acc, scVar) => {
       const {name, value} = scVar
-      acc.push([name, value].join(','))
+      const jsonValue = ContractUtils.hexToJson(value )
+      acc.push([name, jsonValue, value].join('|'))
       return acc
     }, [])
 
