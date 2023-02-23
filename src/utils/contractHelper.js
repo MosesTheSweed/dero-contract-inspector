@@ -26,7 +26,7 @@ export class ContractUtils {
     // Add any arg data to scPrcData & create any transferData objects for monetary fields
     data.forEach((element) =>  {
       switch (element.key) {
-        case args.find(arg => arg.name === element.key)?.name:
+        case args && args.find(arg => arg.name === element.key)?.name:
           const currentArgType = varTypes[args.find(arg => arg.name === element.key).type];
           const dataValue = currentArgType === varTypes.number ? element.value.match(/\./g) ? parseFloat(element.value) : parseInt(element.value) : element.value
           scRpcData.push({name: element.key, datatype: currentArgType, value: dataValue})
