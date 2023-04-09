@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useMemo} from 'react';
 import {ContractContext} from '/src/components/providers/contractProvider.jsx';
 import {Alert} from '/src/components/common/Alert.jsx';
 import Accordion from '/src/components/common/Accordion.jsx';
@@ -18,12 +18,30 @@ export const Contract = () => {
     functions
   } = useContext(ContractContext);
 
+  const storedData = JSON.parse(localStorage.getItem('myDeroSCList'));
+  if (storedData) {
+    console.log('STORED DATA', storedData, Object.keys(storedData))
+  }
+
+  const handleSave = () => {
+    const scData = storedData ? [...storedData, {name: 'testName2', scid: scid}] : [{name: 'testName', scid: scid}]
+    localStorage.setItem('myDeroSCList', JSON.stringify(scData))
+  }
+
   return (
     <>
       {hasData ?
         <div className='container mx-auto pb-20'>
           <div className='ml-8 text-md'>
-            {scid.length ? <><span className='text-purple-500'>Dero Smart Contract Components For SCID:</span> {scid}</> : ''}
+            {
+              scid.length ?
+                <>
+                  <span className='text-purple-500'>Dero Smart Contract Components For SCID:</span> {scid}
+                  <span className='pl-4 text-green-600 cursor-pointer' onClick={handleSave}>
+                    {storedData && storedData.scid && storedData.scid.includes(scid) ? '' : 'Save To My List'}
+                  </span>
+                </> : ''
+            }
           </div>
           {contractVars && <Card title={`Contract Balance: ${ContractUtils.atomicUnitsToDero(balanceList.filter(obj => obj.wallet === ZeroAddress.ZERO_ADDRESS)[0].value)} ${CurrencySymbol.DERO}`}>
             {balanceList.length > 1 ?
