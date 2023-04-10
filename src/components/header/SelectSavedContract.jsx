@@ -6,7 +6,6 @@ export const SelectSavedContract = () => {
   const {scid, scidSet} = useContext(ContractContext);
 
   const storedData = JSON.parse(localStorage.getItem('myDeroSCList'));
-  console.log('Parsed Stored Data', storedData)
 
   const handleSelectChange = (event) => {
     if (event.target.value) {
@@ -28,6 +27,6 @@ export const SelectSavedContract = () => {
   )
 }
 
-// <option value="df3c71867a88dd0cbb9d05f515ff982ac00faa1e31f86e57760e76d09b081c87">Rando</option>
-// <option value="ce7b89d40dda52955619544b1eec5ca35e724bd9528818d1fb59ad63669368e5">RandoTwo</option>
+// <option value="ce7b89d40dda52955619544b1eec5ca35e724bd9528818d1fb59ad63669368e5">Rando</option>
+// <option value="df3c71867a88dd0cbb9d05f515ff982ac00faa1e31f86e57760e76d09b081c87">RandoTwo</option>
 // <option value="cfbd566d3678dec6e6dfa3a919feae5306ab12af1485e8bcf9320bd5a122b1d3">DerBnB</option>

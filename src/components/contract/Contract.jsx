@@ -1,4 +1,4 @@
-import {useContext, useMemo} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {ContractContext} from '/src/components/providers/contractProvider.jsx';
 import {Alert} from '/src/components/common/Alert.jsx';
 import Accordion from '/src/components/common/Accordion.jsx';
@@ -8,6 +8,7 @@ import ContractVariables from '/src/components/contract/ContractVariables.jsx';
 import {ContractUtils} from '/src/utils/contractHelper.js';
 import {CurrencySymbol, ZeroAddress} from '/src/enums/DeroContractConstants.js';
 import ContractBalances from '/src/components/contract/ContractBalances.jsx';
+import {SaveSCToList} from "@/components/SaveSCToList.jsx";
 
 export const Contract = () => {
   const {
@@ -17,16 +18,27 @@ export const Contract = () => {
     contractVars,
     functions
   } = useContext(ContractContext);
+  const [openModal, openModalSet] = useState(false);
 
   const storedData = JSON.parse(localStorage.getItem('myDeroSCList'));
-  if (storedData) {
-    console.log('STORED DATA', storedData, Object.keys(storedData))
-  }
 
   const handleSave = () => {
-    const scData = storedData ? [...storedData, {name: 'testName2', scid: scid}] : [{name: 'testName', scid: scid}]
-    localStorage.setItem('myDeroSCList', JSON.stringify(scData))
+    openModalSet(true)
   }
+
+  const handleModalClose = () => {
+    openModalSet(false)
+  }
+
+  const isInList = storedData && storedData.some(obj => {
+    return Object.keys(obj).some(key => {
+      return obj[key].includes(scid)
+    })
+  })
+
+  useEffect(() => {
+    console.log('Just need this to force rerender when openModal changes')
+  }, [openModal])
 
   return (
     <>
@@ -38,7 +50,10 @@ export const Contract = () => {
                 <>
                   <span className='text-purple-500'>Dero Smart Contract Components For SCID:</span> {scid}
                   <span className='pl-4 text-green-600 cursor-pointer' onClick={handleSave}>
-                    {storedData && storedData.scid && storedData.scid.includes(scid) ? '' : 'Save To My List'}
+                    {storedData && isInList ? '' : 'Save To My List'}
+                  </span>
+                  <span>
+                    {openModal && <SaveSCToList handleClose={handleModalClose} scid={scid} />}
                   </span>
                 </> : ''
             }
