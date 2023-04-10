@@ -6,27 +6,27 @@ import {ContractUtils} from '/src/utils/contractHelper.js';
 
 export const useGetContract = () => {
   const {deroBridgeApi} = useContext(BridgeContext);
-  const {scidSet, hasDataSet, balanceListSet, contractVarsSet, functionsSet} = useContext(ContractContext);
+  const {scid, scidSet, hasDataSet, balanceListSet, contractVarsSet, functionsSet} = useContext(ContractContext);
 
-  const getContract = useCallback(async (scid) => {
-    const [err, res] = await to(deroBridgeApi.daemon('get-sc', {
-      scid: scid,
-      code: true,
-      variables: true
-    }))
-    // console.log('RAW DATA', res.data.result);
+  const getContract = useCallback(async () => {
+    if (scid && deroBridgeApi) {
+      const [err, res] = await to(deroBridgeApi.daemon('get-sc', {
+        scid: scid,
+        code: true,
+        variables: true
+      }))
 
-    // If err, status not 'OK', or no contract data, we send a msg to the user
-    if (err || (res && res.data.result.status !== 'OK') || (res && !res.data.result.code)) {
-      hasDataSet(false);
-    } else {
-      scidSet(scid)
-      hasDataSet(true);
-      functionsSet(ContractUtils.getFunctionData(res.data.result.code))
-      contractVarsSet(ContractUtils.getVariables(res.data.result.stringkeys))
-      balanceListSet(ContractUtils.getBalances(res.data.result.balances))
+      // If err, status not 'OK', or no contract data, we send a msg to the user
+      if (err || (res && res.data?.result?.status !== 'OK') || (res && !res.data?.result?.code)) {
+        hasDataSet(false);
+      } else {
+        hasDataSet(true);
+        functionsSet(ContractUtils.getFunctionData(res.data.result.code))
+        contractVarsSet(ContractUtils.getVariables(res.data.result.stringkeys))
+        balanceListSet(ContractUtils.getBalances(res.data.result.balances))
+      }
     }
-  }, [deroBridgeApi])
+  }, [deroBridgeApi, scid])
 
   return {getContract}
 }

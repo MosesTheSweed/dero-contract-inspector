@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {ContractContext} from '/src/components/providers/contractProvider.jsx';
 import {Alert} from '/src/components/common/Alert.jsx';
 import Accordion from '/src/components/common/Accordion.jsx';
@@ -8,6 +8,7 @@ import ContractVariables from '/src/components/contract/ContractVariables.jsx';
 import {ContractUtils} from '/src/utils/contractHelper.js';
 import {CurrencySymbol, ZeroAddress} from '/src/enums/DeroContractConstants.js';
 import ContractBalances from '/src/components/contract/ContractBalances.jsx';
+import {SaveSCToList} from "@/components/SaveSCToList.jsx";
 
 export const Contract = () => {
   const {
@@ -17,13 +18,45 @@ export const Contract = () => {
     contractVars,
     functions
   } = useContext(ContractContext);
+  const [openModal, openModalSet] = useState(false);
+
+  const storedData = JSON.parse(localStorage.getItem('myDeroSCList'));
+
+  const handleSave = () => {
+    openModalSet(true)
+  }
+
+  const handleModalClose = () => {
+    openModalSet(false)
+  }
+
+  const isInList = storedData && storedData.some(obj => {
+    return Object.keys(obj).some(key => {
+      return obj[key].includes(scid)
+    })
+  })
+
+  useEffect(() => {
+    console.log('Just need this to force rerender when openModal changes')
+  }, [openModal])
 
   return (
     <>
       {hasData ?
         <div className='container mx-auto pb-20'>
           <div className='ml-8 text-md'>
-            {scid.length ? <><span className='text-purple-500'>Dero Smart Contract Components For SCID:</span> {scid}</> : ''}
+            {
+              scid.length ?
+                <>
+                  <span className='text-purple-500'>Dero Smart Contract Components For SCID:</span> {scid}
+                  <span className='pl-4 text-green-600 cursor-pointer' onClick={handleSave}>
+                    {storedData && isInList ? '' : 'Save To My List'}
+                  </span>
+                  <span>
+                    {openModal && <SaveSCToList handleClose={handleModalClose} scid={scid} />}
+                  </span>
+                </> : ''
+            }
           </div>
           {contractVars && <Card title={`Contract Balance: ${ContractUtils.atomicUnitsToDero(balanceList.filter(obj => obj.wallet === ZeroAddress.ZERO_ADDRESS)[0].value)} ${CurrencySymbol.DERO}`}>
             {balanceList.length > 1 ?

@@ -8,7 +8,7 @@ export const ContractProvider = ({children}) => {
   const [displayVars, displayVarsSet] = useState(false)
   const [balanceList, balanceListSet] = useState(null)
   const [hasData, hasDataSet] = useState(false)
-  const [scid, scidSet] = useState(true)
+  const [scid, scidSet] = useState('')
   const [cSymbols, cSymbolsSet] = useState([])
 
   // State for when executing a contract function
