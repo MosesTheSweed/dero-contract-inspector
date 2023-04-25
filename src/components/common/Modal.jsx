@@ -16,7 +16,6 @@ const customStyles = {
 };
 
 function MyModal(props) {
-  console.log('PROPS', props)
   function afterOpenModal(e) {
     props.onAfterOpen(e, 'After Modal Opened');
   }
