@@ -1,13 +1,13 @@
-import {Contract} from '/src/components/contract/Contract.jsx';
-import {Header} from '/src/components/header/Header.jsx';
+import {ResultsPage} from "@/components/ResultsPage.jsx";
+import {HashRouter, Route, Routes} from "react-router-dom";
 
 export const App = () => {
   return (
-    <div className='content mx-auto h-full text-gray-400 bg-gray-800 body-font'>
-      <Header />
-      <div className='mx-auto pt-4'>
-        <Contract />
-      </div>
-    </div>
-  );
-};
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<ResultsPage />} />
+        <Route path="/:searchParam" element={<ResultsPage />} />
+      </Routes>
+    </HashRouter>
+  )
+}
