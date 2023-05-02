@@ -1,11 +1,19 @@
 import {useContext, useEffect, useState} from 'react';
 import {useGetContract} from '/src/hooks/useGetContract.js';
 import {ContractContext} from "@/components/providers/contractProvider.jsx";
+import {useParams} from "react-router-dom";
 
 export const SearchBar = () => {
   const {getContract} = useGetContract();
   const {scid, scidSet} = useContext(ContractContext);
   const [trigger, triggerSet] = useState(false)
+  const {searchParam} = useParams()
+
+  useEffect(() => {
+    if (searchParam) {
+      scidSet(searchParam)
+    }
+  }, [searchParam])
 
   useEffect(() => {
     if (scid) {
@@ -14,12 +22,11 @@ export const SearchBar = () => {
   }, [scid, trigger])
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    scidSet(event.target.scid.value)
+    window.location.hash = `/${event.target.scid.value}`
   }
 
   const handleChange = (event) => {
-    scidSet(event.target.value)
+    window.location.hash = `/${event.target.value}`
   }
 
   const handleRefresh = (event) => {
