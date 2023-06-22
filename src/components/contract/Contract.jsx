@@ -36,6 +36,10 @@ export const Contract = () => {
     })
   })
 
+  const getScidName = () => {
+    return storedData && storedData.find(item => item.scid === scid) || '';
+  }
+
   useEffect(() => {
     console.log('Just need this to force rerender when openModal changes')
   }, [openModal])
@@ -48,7 +52,7 @@ export const Contract = () => {
             {
               scid.length ?
                 <>
-                  <span className='text-purple-500'>Dero Smart Contract Components For SCID:</span> {scid}
+                  <span className='text-purple-500'>Dero Smart Contract Components For <span className='text-xl text-green-600'>{getScidName().name}</span>:</span>&nbsp;{scid}
                   <span className='pl-4 text-green-600 cursor-pointer' onClick={handleSave}>
                     {storedData && isInList ? '' : 'Save To My List'}
                   </span>
