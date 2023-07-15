@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import Modal from 'react-modal';
+import {LIST_KEY} from "@/enums/DeroContractConstants.js";
 
 const customStyles = {
   content: {
@@ -18,7 +19,7 @@ const customStyles = {
 export const SaveSCToList = ({handleClose, scid}) => {
   const [formData, formDataSet] = useState()
   const [modalOpen, modalOpenSet] = useState(true)
-  const storedData = JSON.parse(localStorage.getItem('myDeroSCList'));
+  const storedData = JSON.parse(localStorage.getItem(LIST_KEY));
 
   const closeModal = () => {
     modalOpenSet(false)
@@ -30,7 +31,7 @@ export const SaveSCToList = ({handleClose, scid}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const scData = storedData ? [...storedData, {name: formData.scName, scid: formData.scid}] : [{name: formData.scName, scid: formData.scid}]
-    localStorage.setItem('myDeroSCList', JSON.stringify(scData))
+    localStorage.setItem(LIST_KEY, JSON.stringify(scData))
     handleClose()
   }
 
