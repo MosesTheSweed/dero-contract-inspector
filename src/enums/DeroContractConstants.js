@@ -9,3 +9,5 @@ export const DeroDecimalPlaces = {
 export const CurrencySymbol = {
   DERO: 'Ð'
 }
+
+export const LIST_KEY = 'myDeroSCList'

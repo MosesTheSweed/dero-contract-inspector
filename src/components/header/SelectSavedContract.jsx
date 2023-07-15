@@ -1,11 +1,12 @@
 import {useContext} from "react";
 import {ContractContext} from "@/components/providers/contractProvider.jsx";
+import {LIST_KEY} from "@/enums/DeroContractConstants.js";
 
 
 export const SelectSavedContract = () => {
   const {scid} = useContext(ContractContext);
 
-  const storedData = JSON.parse(localStorage.getItem('myDeroSCList'));
+  const storedData = JSON.parse(localStorage.getItem(LIST_KEY));
 
   const handleSelectChange = (event) => {
     if (event.target.value) {
