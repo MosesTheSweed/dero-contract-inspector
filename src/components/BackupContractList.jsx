@@ -28,7 +28,7 @@ export const BackupContractList = () => {
 
   return (
     <>
-      <button type='button' onClick={handleBackup} className="inline-flex items-center py-2.5 px-4 pr-6 ml-2 text-xs text-purple-800 rounded-lg border border-blue-700 hover:bg-cyan-700 hover:text-neutral-200 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-slate-400 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 disabled:text-purple-400 disabled:bg-slate-300">
+      <button type='button' onClick={handleBackup} className="inline-flex items-center py-2.5 px-4 pr-6 ml-2 text-xs text-purple-400 rounded-lg border border-blue-700 hover:bg-cyan-700 hover:text-neutral-200 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-slate-900 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 disabled:text-purple-400 disabled:bg-slate-300">
         Backup List
       </button>
     </>
