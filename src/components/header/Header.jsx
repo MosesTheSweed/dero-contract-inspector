@@ -4,13 +4,15 @@ import {BridgeContext} from '/src/components/providers/bridgeProvider.jsx';
 import {BridgeStatus} from '/src/enums/BridgeStatus.js';
 import Tooltip from "@/components/common/Tooltip.jsx";
 import {SelectSavedContract} from "@/components/header/SelectSavedContract.jsx";
+import deroLogo from '/src/assets/deroLogo.jpg';
 
 export const Header = () => {
   const {deroBridgeStatus} = useContext(BridgeContext);
 
   return (
-    <header className="bg-gray-900">
+    <header style={{backgroundColor: 'black'}}>
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <img src={deroLogo} className='w-16 h-16' alt='Dero Contract Inspection Tool' />
         <span className="ml-3 text-xl">Dero Contract Inspection</span>
         <span className="md:ml-auto text-sm p-4">
           {deroBridgeStatus === BridgeStatus.CONNECTED ?
