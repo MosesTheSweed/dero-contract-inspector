@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import {ContractContext} from '/src/components/providers/contractProvider.jsx';
 import PropTypes from 'prop-types';
 import Tooltip from '/src/components/common/Tooltip.jsx';
@@ -9,6 +9,18 @@ const ContractFunction = ({name, code, args}) => {
   const monetaryFields = ContractUtils.getFunctionMonetaryInputs()
   const {scid, dataStringSet} = useContext(ContractContext);
   const {callContract} = useCallContract();
+  const [textareaFields, setTextareaFields] = useState({});
+
+  const toggleTextarea = (fieldName, event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    setTextareaFields(prevState => ({
+      ...prevState,
+      [fieldName]: !prevState[fieldName]
+    }));
+  };
+
 
   const handleSubmit = (event) => {
     // Get Submitted Form Data
@@ -45,26 +57,53 @@ const ContractFunction = ({name, code, args}) => {
               <div key={field.name} className='p-2 text-white flex flex-row justify-start'>
                 <Tooltip message={field.toolTip} />
                 <input
-                  className='p-2 rounded-sm bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono'
+                  className='p-2 rounded-md bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono'
                   name={field.name} type={field.type === 'String' ? 'text' : 'number'} placeholder={`${field.name}   ${field.type}`} />
               </div>
             )}
           </div>
-          {args && args.length && args[0].name ?
-            <div className='flex flex-col'>
-              {args.map((arg) =>
-                <div key={arg.name} className='p-2 text-white'>
-                  <input
-                    className='p-2 rounded-sm bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono'
-                    name={arg.name} type={arg.type === 'String' ? 'text' : 'number'} placeholder={`${arg.name}   ${arg.type}`} />
+          {args && args.length && args[0].name ? (
+            <div className="flex flex-col">
+              {args.map((arg) => (
+                <div key={arg.name} className="p-2 text-white flex items-center">
+                  {arg.type === "String" ? (
+                    <div className="flex border-black rounded-md overflow-hidden w-full">
+                      {textareaFields[arg.name] ? (
+                        <textarea rows='10' cols='80'
+                          className="flex-grow p-2 bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono"
+                          name={arg.name}
+                          placeholder={`${arg.name}   ${arg.type}`}
+                        />
+                      ) : (
+                        <input
+                          className="flex-grow p-2 bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono"
+                          name={arg.name}
+                          type="text"
+                          placeholder={`${arg.name}   ${arg.type}`}
+                        />
+                      )}
+                      <button
+                        onClick={(e) => toggleTextarea(arg.name, e)}
+                        className="px-3 bg-gray-700 text-xs hover:bg-gray-600 focus:bg-gray-700 transition"
+                      >
+                        {textareaFields[arg.name] ? "Input" : "Textarea"}
+                      </button>
+                    </div>
+                  ) : (
+                    <input
+                      className="p-2 rounded-md bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono w-full"
+                      name={arg.name}
+                      type="number"
+                      placeholder={`${arg.name}   ${arg.type}`}
+                    />
+                  )}
                 </div>
-              )}
+              ))}
             </div>
-            : <></>
-          }
+          ) : null}
           <div className='pb-2 px-10'>
             <button type='submit' id={name}
-                    className='inline-flex py-2 pl-2 pr-3 ml-2 text-md font-medium text-stone-800 bg-cyan-400 rounded-lg border border-cyan-700 hover:bg-cyan-500 hover:text-neutral-200 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:bg-cyan-400 dark:hover:bg-cyan-500 dark:focus:ring-cyan-800'>
+              className='inline-flex py-2 pl-2 pr-3 ml-2 text-md font-medium text-stone-800 bg-cyan-400 rounded-lg border border-cyan-700 hover:bg-cyan-500 hover:text-neutral-200 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:bg-cyan-400 dark:hover:bg-cyan-500 dark:focus:ring-cyan-800'>
               {name}
             </button>
           </div>
