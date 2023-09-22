@@ -58,7 +58,7 @@ const ContractFunction = ({name, code, args}) => {
                 <Tooltip message={field.toolTip} />
                 <input
                   className='p-2 rounded-md bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono'
-                  name={field.name} type={field.type === 'String' ? 'text' : 'number'} placeholder={`${field.name}   ${field.type}`} />
+                  name={field.name} type={field.type === 'String' ? 'text' : 'number'} placeholder={`${field.type.charAt(0)} ${field.name}`} />
               </div>
             )}
           </div>
@@ -72,14 +72,14 @@ const ContractFunction = ({name, code, args}) => {
                         <textarea rows='10' cols='80'
                           className="flex-grow p-2 bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono"
                           name={arg.name}
-                          placeholder={`${arg.name}   ${arg.type}`}
+                          placeholder={`${arg.type.charAt(0)} ${arg.name}`}
                         />
                       ) : (
                         <input
                           className="flex-grow p-2 bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono"
                           name={arg.name}
                           type="text"
-                          placeholder={`${arg.name}   ${arg.type}`}
+                          placeholder={`${arg.type.charAt(0)} ${arg.name}`}
                         />
                       )}
                       <button
@@ -94,7 +94,7 @@ const ContractFunction = ({name, code, args}) => {
                       className="p-2 rounded-md bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono w-full"
                       name={arg.name}
                       type="number"
-                      placeholder={`${arg.name}   ${arg.type}`}
+                      placeholder={`${arg.type.charAt(0)} ${arg.name}`}
                     />
                   )}
                 </div>
