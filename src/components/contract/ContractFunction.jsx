@@ -29,7 +29,7 @@ const ContractFunction = ({name, code, args}) => {
 
   return (
     <div className='pb-3 px-6 text-neutral-200 divide-y divide-solid divide-purple-400'>
-      <div>
+      <div className='pb-3'>
         <pre>{code}</pre>
       </div>
       <form onSubmit={handleSubmit} name={name}>
@@ -45,7 +45,7 @@ const ContractFunction = ({name, code, args}) => {
               <div key={field.name} className='p-2 text-white flex flex-row justify-start'>
                 <Tooltip message={field.toolTip} />
                 <input
-                  className='p-2 rounded-sm bg-sky-300 text-slate-900 placeholder-slate-700 placeholder-opacity-75 font-mono'
+                  className='p-2 rounded-sm bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono'
                   name={field.name} type={field.type === 'String' ? 'text' : 'number'} placeholder={`${field.name}   ${field.type}`} />
               </div>
             )}
@@ -55,7 +55,7 @@ const ContractFunction = ({name, code, args}) => {
               {args.map((arg) =>
                 <div key={arg.name} className='p-2 text-white'>
                   <input
-                    className='p-2 rounded-sm bg-sky-300 text-slate-900 placeholder-slate-700 placeholder-opacity-75 font-mono'
+                    className='p-2 rounded-sm bg-slate-900 text-neutral-50 placeholder-purple-300 placeholder-opacity-75 font-mono'
                     name={arg.name} type={arg.type === 'String' ? 'text' : 'number'} placeholder={`${arg.name}   ${arg.type}`} />
                 </div>
               )}
