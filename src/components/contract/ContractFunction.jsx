@@ -45,7 +45,7 @@ const ContractFunction = ({name, code, args}) => {
         <pre>{code}</pre>
       </div>
       <form onSubmit={handleSubmit} name={name}>
-        <div className='text-2xl pt-4 text-neutral-300'>Update Contract Values   <span className='text-xs font-mono'>(Dero Amount fields require atomic units -- 1 Dero === 100000)</span></div>
+        <div className='text-2xl pt-4 text-neutral-300'>Input Fields   <span className='text-xs font-mono'>(Dero Amount fields require atomic units -- 1 Dero === 100000)</span></div>
         <div className='pt-4 flex flex-row justify-start items-start text-purple-300'>
           <div className='basis-1/4 pl-10'>Monetary Options</div>
           <div className='basis-1/4'>Function Arguments</div>
